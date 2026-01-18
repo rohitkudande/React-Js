@@ -26,6 +26,8 @@ export default function NavScroll() {
         
              <Link to="/contact" style={{ marginRight: '10px' }}>Contact</Link>
 
+             <Link to="/api" style={{ marginRight: '10px' }}>Api</Link>
+
 
             
           </Nav>
