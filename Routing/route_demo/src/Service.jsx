@@ -1,28 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
 export default function Service() {
 
-  const [summary,setSummary]= useState(0);
+  const [summary, setSummary] = useState({});
+const [regional, setRegional] = useState([]);
+
 let api=()=>{
         axios.get("https://api.rootnet.in/covid19-in/stats/latest")
         .then(res=>{
-            alert("Api called..");
             setSummary(res.data.data.summary);
+            setRegional(res.data.data.regional);
+
         }).catch((err)=>{
           console.log(err);
         });
     };
 
+
+
+useEffect(() => {
+    api();
+  }, []); 
+
+
   return (
     <>
-    <div className="text-center mt-4">
-        <Button variant="success" onClick={api}>
-          Load Covid Data
-        </Button>
-      </div>
     <div className="container mt-5">
       <div className="row">
 
@@ -80,6 +85,35 @@ let api=()=>{
 
       </div>
     </div>
+    <table className="table table-bordered table-striped text-center">
+  <thead className="table-dark">
+    <tr>
+      <th>#</th>
+      <th>State / UT</th>
+      <th>Indian Cases</th>
+      <th>Foreign Cases</th>
+      <th>Discharged</th>
+      <th>Deaths</th>
+      <th>Total Confirmed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  {regional.map((item, index) => (
+    <tr key={index}>
+      <td>{index + 1}</td>
+      <td>{item.loc}</td>
+      <td>{item.confirmedCasesIndian}</td>
+      <td>{item.confirmedCasesForeign}</td>
+      <td>{item.discharged}</td>
+      <td>{item.deaths}</td>
+      <td>{item.totalConfirmed}</td>
+    </tr>
+  ))}
+</tbody>
+
+</table>
+
     </>
   );
 }
