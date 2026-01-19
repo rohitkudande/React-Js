@@ -5,6 +5,7 @@ import NavScroll from "./NavScroll";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Service from "./Service";
 import Api from "./Api";
+import Demo from "./Demo";
 export default function App() {
 
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/service" element={<Service />} />
        <Route path="/contact" element={<Contact />} />
        <Route path="/api" element={<Api />} />
+       <Route path="/demo" element={<Demo />} />
       </Routes>
     </Router>
     </>

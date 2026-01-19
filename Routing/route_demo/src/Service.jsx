@@ -16,7 +16,7 @@ let api=()=>{
 
         }).catch((err)=>{
           console.log(err);
-        });
+        });l
     };
 
 
@@ -88,7 +88,7 @@ useEffect(() => {
     <table className="table table-bordered table-striped text-center">
   <thead className="table-dark">
     <tr>
-      <th>#</th>
+      <th>Sr.No</th>
       <th>State / UT</th>
       <th>Indian Cases</th>
       <th>Foreign Cases</th>
